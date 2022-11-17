@@ -1,8 +1,8 @@
 import os as p
-import timeit
+import datetime
 
 # for timing the run time
-start = timeit.default_timer()
+#start = timeit.default_timer()
 
 # Quick sort in Python
 
@@ -30,6 +30,8 @@ def dataoutput(input):
 data = datasrc()
 
 #-------------------------------------------------------------------
+start = datetime.datetime.now()
+
 def partitioning(arr, start, end):
   pivot = arr[start]
   lowindex = start + 1
@@ -66,11 +68,15 @@ def quick_sort(arr, start, end):
   p = partitioning(arr, start, end)
   quick_sort(arr, start, p-1)
   quick_sort(arr, p+1, end)
+
 #--------------------------------------------------------------------
 
 quick_sort(data, 0, len(data)-1)
-dataoutput(data)
 
 # display the runtime
-stop = timeit.default_timer()
-print('Run Time: ', stop - start)
+stop = datetime.datetime.now()
+
+dataoutput(data)
+time_diff = stop-start
+execution_time=time_diff.total_seconds()*1000
+print('Run Time(ms): ', execution_time)
